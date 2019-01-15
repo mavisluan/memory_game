@@ -16,3 +16,10 @@
     border: 2px solid black;
     margin: 5px;
 }
+
+#message {
+    background-color: blanchedalmond;
+    position: absolute;
+    left: 500px;
+    top: 300px
+}
