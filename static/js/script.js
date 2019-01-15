@@ -1,4 +1,4 @@
-var arrOfImages = ["clam.png","octopus.png","orange_fish.png","pink_fish.png","seahorse.png","seastar.png","seaweed.png","shrimp.png", "yellow_fish.png"];
+var arrOfImages = ["clam.png","octopus.png","orange_fish.png","pink_fish.png","seahorse.png","seastar.png","seaweed.png","shrimp.png", "yellow_fish.png", "triangle_fish.png", "round_fish.png", "squid.png"];
 
 function doubleImages(arr) {
     for (var i = arr.length - 1; i >= 0; i--) {
@@ -56,6 +56,9 @@ for (var i = 0; i < cards.length; i++) {
 }
 
 var cardsPicked = [];
+function alertMatch() {
+    alert("You made a match!");
+}
 
 function revealCard(event) {
     var clickedImageId = event.target.id;
@@ -68,13 +71,14 @@ function revealCard(event) {
     if (cardsPicked.length == 2) {
         if (arrOfImages[cardsPicked[0]] == arrOfImages[cardsPicked[1]]) {
             cardsPicked = [];
+            alertMatch();
         } else {
             var hidePickedCards = function() {
                 hideACard(cardsPicked[0])
                 hideACard(cardsPicked[1])
                 cardsPicked = []
             }
-            window.setTimeout(hidePickedCards, 1000)
+            window.setTimeout(hidePickedCards, 800)
         }
     }
 }
