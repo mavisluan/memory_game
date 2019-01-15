@@ -5,7 +5,7 @@
 - Users can flip two cards each time and try to match the cards. 
 
 ## Screenshot
-<img src='.static/images/screenshot.png' width='600'>
+<img src='./static/images/screenshot.png' width='600'>
 
 ## Installation instructions:
 - git clone https://github.com/mavisluan/memory_game.git
