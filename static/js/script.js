@@ -1,5 +1,6 @@
 var arrOfImages = ["clam.png", "octopus.png", "orange_fish.png"];
 // , "pink_fish.png", "seahorse.png", "seastar.png", "seaweed.png", "shrimp.png", "yellow_fish.png", "triangle_fish.png", "round_fish.png", "squid.png"
+
 function doubleImages(arr) {
     for (var i = arr.length - 1; i >= 0; i--) {
         arr.push(arr[i]);
@@ -38,7 +39,7 @@ function shuffleCards(arr) {
 
 shuffleCards(arrOfImages);
 displayCards(arrOfImages);
-setTimeout(hideAllCards, 2000)
+setTimeout(hideAllCards, 2000);
 
 function hideACard(idx) {
     var specificCard = document.getElementById(idx);
@@ -54,11 +55,11 @@ function hideAllCards() {
 }
 
 var cards = document.getElementsByClassName("card");
+var pickedCardsIds = [];
 for (var i = 0; i < cards.length; i++) {
     cards[i].addEventListener("click", revealCard);
+    cards[i].addEventListener("click", updateMoves);
 }
-
-var pickedCardsIds = [];
 
 function createAlert(text) {
     var message = document.createElement("h1")
@@ -73,7 +74,6 @@ function removeAlert() {
 
 function revealCard(event) {
     var clickedImageId = event.target.id;
-    console.log(clickedImageId)
     var clickedImage = document.getElementById(clickedImageId);
     clickedImage.src = "static/images/" + arrOfImages[clickedImageId];
 
@@ -100,5 +100,16 @@ function revealCard(event) {
             window.setTimeout(hidePickedCards, 600)
         }
     }
+}
+
+
+var steps = 0;
+function updateMoves() {
+    steps += 1
+    console.log(steps)
+    var updatedMoves = document.createElement("span");
+    updatedMoves.textContent = "Moves: " + steps;
+    var counter = document.getElementById("counter")
+    counter.replaceChild(updatedMoves, counter.childNodes[1])
 }
 
