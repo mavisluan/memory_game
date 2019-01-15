@@ -50,18 +50,13 @@ for (var i = 0; i < arrOfImages.length; i++) {
     hideACard(i);
 }
 
-function revealCard(event) {
-    var clickedImageId = event.target.id;
-    var clickedImage = document.getElementById(clickedImageId);
-    clickedImage.src= "static/images/" + arrOfImages[clickedImageId];
-}
-
 var cards = document.getElementsByClassName("card");
 for (var i = 0; i < cards.length; i++) {
     cards[i].addEventListener("click", revealCard);
 }
 
 var cardsPicked = [];
+
 function revealCard(event) {
     var clickedImageId = event.target.id;
 
