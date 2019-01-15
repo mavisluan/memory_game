@@ -1,20 +1,18 @@
-#board {
-    width: 80%;
-    height: 50%;
-    border: 2px solid;
-    min-width: 500px;
+* {
+    margin: 0;
+    padding: 0;
+    text-align: center;
 }
 
-#title {
-    text-align: center
+#container {
+    width: 970px;
+    margin: auto;
 }
 
-#board div {
-    margin: 3%;
-}
-
-div img {
-    width: 12%;
-    border: 2px solid;
-    margin-left:3%
+.card {
+    vertical-align: top;
+    width: 140px;
+    height: 140px;
+    border: 2px solid black;
+    margin: 5px;
 }
