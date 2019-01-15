@@ -1,0 +1,20 @@
+#board {
+    width: 80%;
+    height: 50%;
+    border: 2px solid;
+    min-width: 500px;
+}
+
+#title {
+    text-align: center
+}
+
+#board div {
+    margin: 3%;
+}
+
+div img {
+    width: 12%;
+    border: 2px solid;
+    margin-left:3%
+}
