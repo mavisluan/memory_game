@@ -1,3 +1,4 @@
+
 // IMAGES
 var arrOfImages = ["clam.png", "octopus.png", "orange_fish.png"];
 // , "pink_fish.png", "seahorse.png", "seastar.png", "seaweed.png", "shrimp.png", "yellow_fish.png", "triangle_fish.png", "round_fish.png", "squid.png"
@@ -9,22 +10,22 @@ function doubleImages(arr) {
 
     return arr;
 }
-
-// doubleImages(arrOfImages)
+doubleImages(arrOfImages)
 
 // CARDS
+var cardsIds = []
+
 function displayCards(arr) {
-    var board = document.getElementById("board");
+    var container = document.getElementById("container");
 
     for (var i = 0; i < arr.length; i++) {
-        var card = document.createElement("img");
-        card.src = "static/images/" + arr[i];
-        card.id = i;
-        card.className = "card";
-        // Add eventListener
-        card.addEventListener("click", revealCard);
-        card.addEventListener("click", updateMoves);
-        board.appendChild(card);
+        var newImgElement = document.createElement("img");
+        newImgElement.src = "static/images/" + arr[i];
+        newImgElement.id = i;
+        cardsIds.push(i);
+        newImgElement.className = "card";
+
+        container.appendChild(newImgElement);
     }
 }
 
@@ -41,22 +42,30 @@ function shuffleCards(arr) {
     return arr;
 }
 
-// shuffleCards(arrOfImages);
-// displayCards(arrOfImages);
-// setTimeout(hideAllCards, 2000);
+shuffleCards(arrOfImages);
+displayCards(arrOfImages);
+setTimeout(hideAllCards, 2000);
 
 function hideACard(idx) {
     var specificCard = document.getElementById(idx);
     specificCard.src = "static/images/questionmark.png";
 }
 
+var hiddenCardsIds = [];
 function hideAllCards() {   
     for (var i = 0; i < arrOfImages.length; i++) {
         hideACard(i)
+        hiddenCardsIds.push(i);
     }
 }
 
+var cards = document.getElementsByClassName("card");
 var pickedCardsIds = [];
+
+for (var i = 0; i < cards.length; i++) {
+    cards[i].addEventListener("click", revealCard);
+    cards[i].addEventListener("click", updateMoves);
+}
 
 function revealCard(event) {
     var clickedImageId = event.target.id;
@@ -77,8 +86,7 @@ function revealCard(event) {
             } else {
                 removeAlert();
                 createAlert("You are a genius!");
-                
-                choiceAlert();
+                replayAlert();
             }
         } else {
             var hidePickedCards = function () {
@@ -107,40 +115,31 @@ function isComplete() {
 function createAlert(text) {
     var message = document.createElement("h1")
     message.textContent = text
-    message.className = "message"
-    document.getElementById("board").appendChild(message)
+    message.id = "message"
+    document.getElementById("container").appendChild(message)
 }
 
 function removeAlert() {
-    var messages = document.getElementsByClassName("message")
-    while(messages.length != 0) {
-        document.getElementById("board").removeChild(messages[0])
-    }
+    document.getElementById("container").removeChild(message)
 }
 
-function choiceAlert() {
-    createAlert("Replay or Challenge?")
-    var replayButton = createButton("Replay");
+function replayAlert() {
+    createAlert("Replay?")
 
-    replayButton.addEventListener("click", replayGame)
-    var challengeButton = createButton("Challenge")
-    challengeButton.addEventListener("click", challengeGame)
+    var yesButton = createButton("Yes")
+    var noButton = createButton("No")
+    // yesButton.addEventListener("click", replayFunc)
+    // noButton.addEventListener("click", replayFunc)
 }
 
 function createButton(text) {
-    var button = document.createElement("button");
-    button.className= "button";
-    button.textContent = text;
-    document.getElementById("board").appendChild(button);
-    return button
+    var button = document.createElement("button")
+    button.id = "yes"
+    button.textContent = text
+    
+    document.getElementById("container").appendChild(button)
 }
 
-function removeButtons() {
-    var buttons = document.getElementsByClassName("button")
-    while(buttons.length != 0) {
-        document.getElementById("board").removeChild(buttons[0])
-    }
-}
 // COUNTER
 var steps = 0;
 function updateMoves() {
@@ -150,35 +149,3 @@ function updateMoves() {
     var counter = document.getElementById("counter")
     counter.replaceChild(updatedMoves, counter.childNodes[1])
 }
-
-function clearboard() {
-    var blanks = document.getElementsByClassName("blank");
-    var board = document.getElementById("board");
-
-    while (blanks.length != 0) {
-        board.removeChild(blanks[0])
-    }
-    removeAlert()
-    removeButtons() 
-}
-
-function startGame() {
-    doubleImages(arrOfImages)
-    shuffleCards(arrOfImages);
-    displayCards(arrOfImages);
-    setTimeout(hideAllCards, 2000);
-}
-
-function replayGame() {
-    clearboard()
-    removeAlert()
-    shuffleCards(arrOfImages);
-    displayCards(arrOfImages);
-    setTimeout(hideAllCards, 2000);
-}
-
-function challengeGame() {
-    removeAlert()
-    startGame()
-}
-startGame()
