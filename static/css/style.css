@@ -42,6 +42,9 @@ button {
     border-radius: 10%
 }
 
+button:hover {
+    background-color: lightblue;
+}
 #counter {
     margin: 20px;
 }

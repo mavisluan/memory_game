@@ -1,6 +1,6 @@
 // IMAGES
-var arrOfImages = ["clam.png", "octopus.png", ];
-// "orange_fish.png", "pink_fish.png", "seahorse.png", "seastar.png", "seaweed.png", "shrimp.png", "yellow_fish.png", "triangle_fish.png", "round_fish.png", "squid.png"
+var arrOfImages = ["clam.png", "octopus.png", "orange_fish.png", "pink_fish.png", "seahorse.png", "seastar.png", "seaweed.png", "shrimp.png", "yellow_fish.png",];
+//   "triangle_fish.png","round_fish.png", "squid.png"
 
 function doubleImages(arr) {
     for (var i = arr.length - 1; i >= 0; i--) {
@@ -9,8 +9,6 @@ function doubleImages(arr) {
 
     return arr;
 }
-
-// doubleImages(arrOfImages)
 
 // CARDS
 function displayCards(arr) {
@@ -40,10 +38,6 @@ function shuffleCards(arr) {
 
     return arr;
 }
-
-// shuffleCards(arrOfImages);
-// displayCards(arrOfImages);
-// setTimeout(hideAllCards, 2000);
 
 function hideACard(idx) {
     var specificCard = document.getElementById(idx);
@@ -106,8 +100,6 @@ function removeCard(id) {
 }
 
 function isComplete() {
-    console.log(removedCardsIds)
-
    return removedCardsIds.length == arrOfImages.length
 }
 
@@ -132,7 +124,7 @@ function choiceAlert() {
 
     yesButton.addEventListener("click", replayGame)
     var noButton = createButton("No")
-    // noButton.addEventListener("click", challengeGame)
+    noButton.addEventListener("click", exitGame)
 }
 
 function createButton(text) {
@@ -170,6 +162,14 @@ function clearboard() {
     clearRemovedCardsIds()
 }
 
+function clearSteps() {
+    var clearSteps = document.createElement("span");
+    clearSteps.textContent = "Moves: 0";
+    var counter = document.getElementById("counter")
+    counter.replaceChild(clearSteps, counter.childNodes[1]);
+}
+
+// Game
 doubleImages(arrOfImages)
 function startGame() {
     shuffleCards(arrOfImages);
@@ -179,14 +179,14 @@ function startGame() {
 
 function replayGame() {
     steps = 0;
-    clearboard()
-    startGame()
+    clearboard();
+    startGame();
+    clearSteps();
 }
 
-// function challengeGame() {
-//     clearboard()
+function exitGame() {
+    clearboard();
+    createAlert("Hope to you see you soon!");
+}
 
-//     removeAlert()
-//     startGame()
-// }
 startGame()
