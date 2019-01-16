@@ -7,9 +7,10 @@
 
 ## Screenshot
 <img src='./static/images/screenshot1.png' width='600'>
-
 <img src='./static/images/screenshot2.png' width='600'>
 
+## Online Demo
+https://mavisluan.github.io/memory_game/
 
 ## Installation instructions:
 - git clone https://github.com/mavisluan/memory_game.git
