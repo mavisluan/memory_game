@@ -9,6 +9,16 @@
     margin: auto;
 }
 
+#board-image {
+    width: 600px;
+    margin: auto;
+    padding: 40px;
+}
+
+#board-image:hover {
+    cursor: pointer;
+}
+
 .card {
     vertical-align: top;
     width: 140px;

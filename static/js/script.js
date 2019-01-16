@@ -1,6 +1,6 @@
 // IMAGES
-var arrOfImages = ["clam.png", "octopus.png", "orange_fish.png", "pink_fish.png", "seahorse.png", "seastar.png", "seaweed.png", "shrimp.png", "yellow_fish.png",];
-//   "triangle_fish.png","round_fish.png", "squid.png"
+var arrOfImages = ["clam.png", "octopus.png", "orange_fish.png", ];
+//  "pink_fish.png", "seahorse.png", "seastar.png", "seaweed.png", "shrimp.png", "yellow_fish.png", "triangle_fish.png","round_fish.png", "squid.png"
 
 function doubleImages(arr) {
     for (var i = arr.length - 1; i >= 0; i--) {
@@ -119,7 +119,7 @@ function removeAlert() {
 }
 
 function choiceAlert() {
-    createAlert("Replay or Challenge?")
+    createAlert("Replay or exit?")
     var yesButton = createButton("Yes");
 
     yesButton.addEventListener("click", replayGame)
@@ -154,6 +154,12 @@ function updateMoves() {
 function clearboard() {
     var blanks = document.getElementsByClassName("blank");
     var board = document.getElementById("board");
+
+    if (document.getElementById("board-image")) {
+        var boardImage = document.getElementById("board-image");
+        board.removeChild(boardImage)
+    }
+    
     while (blanks.length != 0) {
         board.removeChild(blanks[0])
     }
@@ -172,6 +178,7 @@ function clearSteps() {
 // Game
 doubleImages(arrOfImages)
 function startGame() {
+    clearboard();
     shuffleCards(arrOfImages);
     displayCards(arrOfImages);
     setTimeout(hideAllCards, 2000);
@@ -186,7 +193,21 @@ function replayGame() {
 
 function exitGame() {
     clearboard();
-    createAlert("Hope to you see you soon!");
+    createAlert("Hope to you see you again!");
 }
 
-startGame()
+function instructions() {
+    var board = document.getElementById("board");
+
+    var boardImage = document.createElement("img");
+    boardImage.src = "static/images/board-image.png";
+    boardImage.id = "board-image";
+    boardImage.addEventListener("click", startGame);
+    board.appendChild(boardImage);
+
+    createAlert("You have 2 seconds to preview the cards.")
+    createAlert("Click the board to start the game.")
+}
+
+instructions()
+// startGame()
