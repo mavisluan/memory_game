@@ -1,6 +1,6 @@
 // IMAGES
-var arrOfImages = ["clam.png", "octopus.png", "orange_fish.png", ];
-//  "pink_fish.png", "seahorse.png", "seastar.png", "seaweed.png", "shrimp.png", "yellow_fish.png", "triangle_fish.png","round_fish.png", "squid.png"
+var arrOfImages = ["clam.png", "octopus.png", "orange_fish.png", "pink_fish.png", "seahorse.png", "seastar.png", "seaweed.png", "shrimp.png","triangle_fish.png"];
+// "yellow_fish.png", ,"round_fish.png", "squid.png"
 
 function doubleImages(arr) {
     for (var i = arr.length - 1; i >= 0; i--) {
@@ -210,4 +210,3 @@ function instructions() {
 }
 
 instructions()
-// startGame()
