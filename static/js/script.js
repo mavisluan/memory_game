@@ -1,6 +1,6 @@
 // IMAGES
-var arrOfImages = ["clam.png", "octopus.png", "orange_fish.png"];
-// , "pink_fish.png", "seahorse.png", "seastar.png", "seaweed.png", "shrimp.png", "yellow_fish.png", "triangle_fish.png", "round_fish.png", "squid.png"
+var arrOfImages = ["clam.png", "octopus.png", ];
+// "orange_fish.png", "pink_fish.png", "seahorse.png", "seastar.png", "seaweed.png", "shrimp.png", "yellow_fish.png", "triangle_fish.png", "round_fish.png", "squid.png"
 
 function doubleImages(arr) {
     for (var i = arr.length - 1; i >= 0; i--) {
@@ -91,7 +91,13 @@ function revealCard(event) {
     }
 }
 
-var removedCardsIds = []
+var removedCardsIds = [];
+function clearRemovedCardsIds() {
+    while (removedCardsIds.length != 0) {
+        removedCardsIds.pop()
+    }
+}
+
 function removeCard(id) {
     var card = document.getElementById(id)
     card.src = "static/images/blank.png"
@@ -100,6 +106,8 @@ function removeCard(id) {
 }
 
 function isComplete() {
+    console.log(removedCardsIds)
+
    return removedCardsIds.length == arrOfImages.length
 }
 
@@ -120,11 +128,11 @@ function removeAlert() {
 
 function choiceAlert() {
     createAlert("Replay or Challenge?")
-    var replayButton = createButton("Replay");
+    var yesButton = createButton("Yes");
 
-    replayButton.addEventListener("click", replayGame)
-    var challengeButton = createButton("Challenge")
-    challengeButton.addEventListener("click", challengeGame)
+    yesButton.addEventListener("click", replayGame)
+    var noButton = createButton("No")
+    // noButton.addEventListener("click", challengeGame)
 }
 
 function createButton(text) {
@@ -154,31 +162,31 @@ function updateMoves() {
 function clearboard() {
     var blanks = document.getElementsByClassName("blank");
     var board = document.getElementById("board");
-
     while (blanks.length != 0) {
         board.removeChild(blanks[0])
     }
     removeAlert()
     removeButtons() 
+    clearRemovedCardsIds()
 }
 
+doubleImages(arrOfImages)
 function startGame() {
-    doubleImages(arrOfImages)
     shuffleCards(arrOfImages);
     displayCards(arrOfImages);
     setTimeout(hideAllCards, 2000);
 }
 
 function replayGame() {
+    steps = 0;
     clearboard()
-    removeAlert()
-    shuffleCards(arrOfImages);
-    displayCards(arrOfImages);
-    setTimeout(hideAllCards, 2000);
-}
-
-function challengeGame() {
-    removeAlert()
     startGame()
 }
+
+// function challengeGame() {
+//     clearboard()
+
+//     removeAlert()
+//     startGame()
+// }
 startGame()
